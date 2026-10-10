@@ -1,0 +1,393 @@
+{
+  "generated_at": "2026-10-10T22:17:32",
+  "source_files": [
+    {
+      "file": "sales_orders_raw.csv",
+      "rows_in": 73,
+      "columns": [
+        "order_id",
+        "order_date",
+        "customer",
+        "product",
+        "qty",
+        "amount",
+        "currency",
+        "status",
+        "region",
+        "rep"
+      ]
+    },
+    {
+      "file": "customer_master_raw.csv",
+      "rows_in": 19,
+      "columns": [
+        "customer_name",
+        "contact_email",
+        "phone",
+        "country",
+        "credit_limit"
+      ]
+    },
+    {
+      "file": "inventory_jp_raw.xlsx",
+      "rows_in": 12,
+      "columns": [
+        "sku",
+        "name_jp",
+        "stock",
+        "unit_price_jpy",
+        "note"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "step": "canonicalisation",
+      "detail": {
+        "customer_name": {
+          "field": "customer_name",
+          "raw_distinct": 41,
+          "canonical_distinct": 8,
+          "placeholders_excluded": 0,
+          "mapping": {
+            "  Blue Harbour Foods ": "  Blue Harbour Foods ",
+            "  Meridian  Supply ": "Meridian Supply Co.",
+            "  Meridian Supply Co. ": "Meridian Supply Co.",
+            "  Orion Logistcs ": "ORION LOGISTICS",
+            "  Pacific  Rim Metals ": "Pacific  Rim Metals",
+            "  SUNFIELD TEXTILES ": "Sunfield  Textiles",
+            "  Vertex Industrial ": "VERTEX INDUSTRIAL PTE",
+            "  northwind retail ": "NorthWind Retail Inc",
+            "  orion logistics ": "ORION LOGISTICS",
+            " Aurora Trading": "Aurora Trading  Ltd.",
+            "AURORA TRADING": "Aurora Trading  Ltd.",
+            "Aurora Trading  Ltd.": "Aurora Trading  Ltd.",
+            "Aurora Trading Ltd": "Aurora Trading  Ltd.",
+            "Aurora Tradng Ltd": "Aurora Trading  Ltd.",
+            "BLUE HARBOR FOODS": "  Blue Harbour Foods ",
+            "Blue Harbor Food": "  Blue Harbour Foods ",
+            "Blue Harbor Foods": "  Blue Harbour Foods ",
+            "Blue Harbour Foods": "  Blue Harbour Foods ",
+            "MERIDIAN SUPPLY": "Meridian Supply Co.",
+            "Meridian  Supply": "Meridian Supply Co.",
+            "Meridian Supply Co.": "Meridian Supply Co.",
+            "NORTHWIND RETAIL": "NorthWind Retail Inc",
+            "NorthWind Retail Inc": "NorthWind Retail Inc",
+            "Northwind Retail": "NorthWind Retail Inc",
+            "Northwind Retail, Inc.": "NorthWind Retail Inc",
+            "ORION LOGISTICS": "ORION LOGISTICS",
+            "Orion Logistcs": "ORION LOGISTICS",
+            "Orion Logistics": "ORION LOGISTICS",
+            "PACIFIC RIM METALS": "Pacific  Rim Metals",
+            "Pacific  Rim Metals": "Pacific  Rim Metals",
+            "Pacific Rim Metal": "Pacific  Rim Metals",
+            "Pacific Rim Metals": "Pacific  Rim Metals",
+            "SUNFIELD TEXTILES": "Sunfield  Textiles",
+            "Sunfield  Textiles": "Sunfield  Textiles",
+            "Sunfield Textile Co": "Sunfield  Textiles",
+            "Sunfield Textiles": "Sunfield  Textiles",
+            "VERTEX INDUSTRIAL PTE": "VERTEX INDUSTRIAL PTE",
+            "Vertex Industral": "VERTEX INDUSTRIAL PTE",
+            "Vertex Industrial Pte Ltd": "VERTEX INDUSTRIAL PTE",
+            "blue harbor foods": "  Blue Harbour Foods ",
+            "meridian supply co": "Meridian Supply Co.",
+            "northwind retail": "NorthWind Retail Inc",
+            "orion logistics": "ORION LOGISTICS",
+            "pacific rim metals": "Pacific  Rim Metals",
+            "sunfield textiles": "Sunfield  Textiles"
+          },
+          "merged_groups": [
+            [
+              "  Blue Harbour Foods ",
+              "BLUE HARBOR FOODS",
+              "Blue Harbor Food",
+              "Blue Harbor Foods",
+              "Blue Harbour Foods",
+              "blue harbor foods"
+            ],
+            [
+              "  Meridian  Supply ",
+              "  Meridian Supply Co. ",
+              "MERIDIAN SUPPLY",
+              "Meridian  Supply",
+              "Meridian Supply Co.",
+              "meridian supply co"
+            ],
+            [
+              "  Orion Logistcs ",
+              "  orion logistics ",
+              "ORION LOGISTICS",
+              "Orion Logistcs",
+              "Orion Logistics",
+              "orion logistics"
+            ],
+            [
+              "  Pacific  Rim Metals ",
+              "PACIFIC RIM METALS",
+              "Pacific  Rim Metals",
+              "Pacific Rim Metal",
+              "Pacific Rim Metals",
+              "pacific rim metals"
+            ],
+            [
+              "  SUNFIELD TEXTILES ",
+              "SUNFIELD TEXTILES",
+              "Sunfield  Textiles",
+              "Sunfield Textile Co",
+              "Sunfield Textiles",
+              "sunfield textiles"
+            ],
+            [
+              "  Vertex Industrial ",
+              "VERTEX INDUSTRIAL PTE",
+              "Vertex Industral",
+              "Vertex Industrial Pte Ltd"
+            ],
+            [
+              "  northwind retail ",
+              "NORTHWIND RETAIL",
+              "NorthWind Retail Inc",
+              "Northwind Retail",
+              "Northwind Retail, Inc.",
+              "northwind retail"
+            ],
+            [
+              " Aurora Trading",
+              "AURORA TRADING",
+              "Aurora Trading  Ltd.",
+              "Aurora Trading Ltd",
+              "Aurora Tradng Ltd"
+            ]
+          ]
+        },
+        "product_name": {
+          "field": "product_name",
+          "raw_distinct": 26,
+          "canonical_distinct": 5,
+          "placeholders_excluded": 0,
+          "mapping": {
+            "HYDRAULIC VALVE C3": "hydraulic valve c3",
+            "HYDRAULIC VALVE C3 ": "hydraulic valve c3",
+            "Hydraulic Valve C3 ": "hydraulic valve c3",
+            "INDUSTRIAL WIDGET A1": "INDUSTRIAL WIDGET A1",
+            "INDUSTRIAL WIDGET A1 ": "INDUSTRIAL WIDGET A1",
+            "Industrial Widget  A1": "INDUSTRIAL WIDGET A1",
+            "Industrial Widget  A1 ": "INDUSTRIAL WIDGET A1",
+            "PRECISION GEAR B2": "Precision  Gear B2",
+            "PRECISION GEAR B2 ": "Precision  Gear B2",
+            "Precision  Gear B2": "Precision  Gear B2",
+            "Precision  Gear B2 ": "Precision  Gear B2",
+            "SENSOR MODULE D4": "Sensor  Module D4",
+            "SENSOR MODULE D4 ": "Sensor  Module D4",
+            "STEEL BRACKET E5": "STEEL BRACKET E5",
+            "Sensor  Module D4": "Sensor  Module D4",
+            "Sensor  Module D4 ": "Sensor  Module D4",
+            "Steel Bracket  E5": "STEEL BRACKET E5",
+            "Steel Bracket  E5 ": "STEEL BRACKET E5",
+            "hydraulic valve c3": "hydraulic valve c3",
+            "industrial widget a1": "INDUSTRIAL WIDGET A1",
+            "precision gear b2": "Precision  Gear B2",
+            "precision gear b2 ": "Precision  Gear B2",
+            "sensor module d4": "Sensor  Module D4",
+            "sensor module d4 ": "Sensor  Module D4",
+            "steel bracket e5": "STEEL BRACKET E5",
+            "steel bracket e5 ": "STEEL BRACKET E5"
+          },
+          "merged_groups": [
+            [
+              "HYDRAULIC VALVE C3",
+              "HYDRAULIC VALVE C3 ",
+              "Hydraulic Valve C3 ",
+              "hydraulic valve c3"
+            ],
+            [
+              "INDUSTRIAL WIDGET A1",
+              "INDUSTRIAL WIDGET A1 ",
+              "Industrial Widget  A1",
+              "Industrial Widget  A1 ",
+              "industrial widget a1"
+            ],
+            [
+              "PRECISION GEAR B2",
+              "PRECISION GEAR B2 ",
+              "Precision  Gear B2",
+              "Precision  Gear B2 ",
+              "precision gear b2",
+              "precision gear b2 "
+            ],
+            [
+              "SENSOR MODULE D4",
+              "SENSOR MODULE D4 ",
+              "Sensor  Module D4",
+              "Sensor  Module D4 ",
+              "sensor module d4",
+              "sensor module d4 "
+            ],
+            [
+              "STEEL BRACKET E5",
+              "Steel Bracket  E5",
+              "Steel Bracket  E5 ",
+              "steel bracket e5",
+              "steel bracket e5 "
+            ]
+          ]
+        },
+        "region": {
+          "field": "region",
+          "raw_distinct": 14,
+          "canonical_distinct": 5,
+          "placeholders_excluded": 7,
+          "mapping": {
+            "CENTRAL": "Central",
+            "Central": "Central",
+            "East": "East",
+            "North": "North",
+            "SOUTH": "South",
+            "South": "South",
+            "WEST": "West",
+            "West": "West"
+          },
+          "merged_groups": [
+            [
+              "CENTRAL",
+              "Central"
+            ],
+            [
+              "SOUTH",
+              "South"
+            ],
+            [
+              "WEST",
+              "West"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "step": "duplicate_resolution",
+      "exact_removed": 7,
+      "order_conflicts": [
+        {
+          "order_id": "SO-2024-0003",
+          "variants": 2,
+          "kept": {
+            "order_date": "17/01/2024",
+            "customer": "Pacific  Rim Metals",
+            "product": "Sensor  Module D4",
+            "qty": "0",
+            "amount": "244.13"
+          },
+          "rule": "most complete fields, then earliest date, then largest amount"
+        },
+        {
+          "order_id": "SO-2024-0021",
+          "variants": 2,
+          "kept": {
+            "order_date": "05.05.2024",
+            "customer": "VERTEX INDUSTRIAL PTE",
+            "product": "Sensor  Module D4",
+            "qty": "5",
+            "amount": "'481.57"
+          },
+          "rule": "most complete fields, then earliest date, then largest amount"
+        },
+        {
+          "order_id": "SO-2024-0027",
+          "variants": 2,
+          "kept": {
+            "order_date": "07/03/2024",
+            "customer": "Meridian Supply Co.",
+            "product": "Sensor  Module D4",
+            "qty": "15",
+            "amount": "'12,441.33"
+          },
+          "rule": "most complete fields, then earliest date, then largest amount"
+        },
+        {
+          "order_id": "SO-2024-0036",
+          "variants": 2,
+          "kept": {
+            "order_date": "17.02.2024",
+            "customer": "Sunfield  Textiles",
+            "product": "STEEL BRACKET E5",
+            "qty": "12",
+            "amount": "224.67"
+          },
+          "rule": "most complete fields, then earliest date, then largest amount"
+        }
+      ]
+    }
+  ],
+  "results": {
+    "rows_in": 73,
+    "rows_out": 62,
+    "rows_removed": 11,
+    "columns_out": 16,
+    "completeness_before_pct": 97.26,
+    "completeness_after_pct": 100.0,
+    "distinct_customers_raw": 41,
+    "distinct_customers_clean": 8,
+    "distinct_products_raw": 26,
+    "distinct_products_clean": 5,
+    "unparsed_dates": 0,
+    "orders_without_customer_record": 0,
+    "total_corrections": 499
+  },
+  "checks": {
+    "amount_parsing": {
+      "ok": 73
+    },
+    "blank_rows": {
+      "removed": 4
+    },
+    "csv_header": {
+      "columns_normalised": 15
+    },
+    "currency_resolution": {
+      "explicit-column": 73
+    },
+    "customer_merge": {
+      "master_rows_after_dedup": 8,
+      "orders_without_master_record": 0
+    },
+    "customer_name": {
+      "raw_distinct": 41,
+      "canonical_distinct": 8
+    },
+    "date_parsing": {
+      "mon-d-y": 5,
+      "iso-slash": 13,
+      "iso": 7,
+      "day-first": 14,
+      "numeric-assumed-day-first": 19,
+      "d-mon-y": 10,
+      "month-first": 5
+    },
+    "duplicates": {
+      "exact_removed": 7,
+      "near_duplicates_resolved": 4
+    },
+    "excel_footer": {
+      "junk_rows_removed": 4
+    },
+    "excel_header": {
+      "junk_rows_above_table": 5
+    },
+    "product_name": {
+      "raw_distinct": 26,
+      "canonical_distinct": 5
+    },
+    "qty_parsing": {
+      "ok": 63,
+      "missing": 10
+    },
+    "region": {
+      "raw_distinct": 14,
+      "canonical_distinct": 5
+    },
+    "status_normalisation": {
+      "title_cased": 61
+    }
+  }
+}
